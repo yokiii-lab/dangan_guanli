@@ -218,6 +218,18 @@
     text-align: center !important;
 }
 
+/* 第23列：存放地点 - 加宽 */
+#contractDirAll .table-responsive td:nth-child(23),
+#contractDirAll .table-responsive th:nth-child(23),
+#contractDirMy .table-responsive td:nth-child(23),
+#contractDirMy .table-responsive th:nth-child(23) {
+    min-width: 150px !important;
+    width: 150px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: left !important;
+}
+
 /* 第31列：备注列 - 加宽，靠左对齐，允许换行 */
 #contractDirAll .table-responsive td:nth-child(31),
 #contractDirAll .table-responsive th:nth-child(31),
@@ -970,6 +982,60 @@
         /* 工具编辑行样式 - 与档案保持一致 */
         .tool-editing-row { background-color: #fff9e6 !important; box-shadow: 0 0 0 2px #ffc107 inset !important; }
         .tool-editing-row td { background-color: #fff9e6 !important; }
+/* 公告栏滚动动画 */
+@keyframes scrollAnnouncement {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+#announcementScroll {
+    animation: scrollAnnouncement 25s linear infinite;
+}
+#announcementBar:hover #announcementScroll {
+    animation-play-state: paused;
+}
+/* ========== 留言板样式 ========== */
+.message-item { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9edf2; transition: all 0.2s; }
+.message-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.message-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+.message-author { font-weight: 600; color: #1e3a5f; }
+.message-author i { margin-right: 5px; }
+.message-time { font-size: 0.75rem; color: #8ba0b5; }
+.message-content { font-size: 0.95rem; line-height: 1.5; color: #2c3e50; margin-bottom: 12px; word-break: break-word; }
+.message-stats { display: flex; gap: 15px; align-items: center; margin-top: 8px; }
+.message-actions { display: flex; gap: 15px; margin-top: 10px; }
+.message-actions button, .message-stats button { background: none; border: none; font-size: 0.8rem; color: #8ba0b5; cursor: pointer; padding: 4px 8px; border-radius: 20px; transition: all 0.2s; }
+.message-actions button:hover, .message-stats button:hover { background: #f0f4fa; color: #1e3a5f; }
+.message-actions .delete-btn:hover { color: #e74c3c; }
+.like-btn { display: inline-flex; align-items: center; gap: 5px; }
+.like-btn.liked { color: #e74c3c; background: #fff5f5; }
+.like-btn.liked:hover { background: #ffe6e6; }
+.like-count { font-weight: 600; margin-left: 2px; }
+.badge-resolved { background: #27ae60; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; margin-left: 10px; }
+.reply-thread { margin-top: 15px; }
+.reply-item { background: #f8fafc; border-radius: 12px; padding: 12px 15px; margin-bottom: 10px; }
+.reply-item.level-1 { margin-left: 20px; border-left: 3px solid #e9edf2; }
+.reply-item.level-2 { margin-left: 40px; border-left: 3px solid #d9e0e8; }
+.reply-item.level-3 { margin-left: 60px; border-left: 3px solid #c9d0dc; }
+.reply-item.level-4 { margin-left: 80px; border-left: 3px solid #b9c0d0; }
+.reply-item.level-5 { margin-left: 100px; border-left: 3px solid #a9b0c4; }
+.reply-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 5px; }
+.reply-author { font-weight: 500; font-size: 0.85rem; color: #1e3a5f; }
+.reply-author i { margin-right: 4px; font-size: 0.75rem; }
+.reply-time { font-size: 0.7rem; color: #8ba0b5; }
+.reply-content { font-size: 0.85rem; color: #2c3e50; margin-bottom: 8px; word-break: break-word; }
+.reply-stats { display: flex; gap: 10px; align-items: center; margin-top: 5px; }
+.reply-actions { display: flex; gap: 10px; }
+.reply-actions button, .reply-stats button { background: none; border: none; font-size: 0.7rem; color: #8ba0b5; cursor: pointer; padding: 2px 6px; border-radius: 12px; }
+.reply-actions button:hover, .reply-stats button:hover { background: #e9edf2; }
+.reply-actions .reply-to-btn:hover { color: #1e3a5f; }
+.reply-actions .delete-reply-btn:hover { color: #e74c3c; }
+.reply-like-btn.liked { color: #e74c3c; }
+.reply-form { margin-top: 10px; display: flex; gap: 8px; align-items: flex-start; }
+.reply-form textarea { flex: 1; border-radius: 20px; border: 1px solid #e9edf2; padding: 8px 12px; font-size: 0.85rem; resize: vertical; }
+.reply-form button { background: #1e3a5f; color: white; border: none; border-radius: 30px; padding: 6px 16px; font-size: 0.8rem; }
+.reply-form button:hover { background: #2a4b74; }
+.reply-form .cancel-btn { background: #e9edf2; color: #5a6b7c; margin-left: 5px; }
+.mention-text { color: #27ae60; font-size: 0.8rem; margin-right: 5px; }
     </style>
 </head>
 <body>
@@ -1013,6 +1079,31 @@
         </div>
     </nav>
 
+<!-- 公告栏 - 红色系 -->
+<div id="announcementBar" style="background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%); border-bottom: 3px solid #e74c3c; padding: 8px 0;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-auto" style="background: #e74c3c; border-radius: 20px; padding: 4px 12px;">
+                <i class="fas fa-bullhorn me-1" style="color: white;"></i>
+                <span style="color: white; font-weight: bold; font-size: 0.85rem;">公告</span>
+            </div>
+            <div class="col" style="overflow: hidden; white-space: nowrap;">
+                <div id="announcementScroll" style="display: inline-block; white-space: nowrap; animation: scrollAnnouncement 25s linear infinite;">
+                    <span id="announcementText" style="font-size: 0.95rem; color: #c0392b; font-weight: 500;"></span>
+                    <span id="announcementAuthor" style="font-size: 0.8rem; color: #e67e22; margin-left: 15px;">
+                        <i class="fas fa-user-circle"></i> <span id="announcementAuthorName"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-auto" id="announcementManageBtn" style="display: none;">
+                <button class="btn btn-sm btn-outline-danger" onclick="openAnnouncementModal()" style="border-radius: 20px; border-color: #e74c3c; color: #e74c3c;">
+                    <i class="fas fa-edit"></i> 管理公告
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <main class="container-fluid px-4 py-4">
         <!-- 面包屑 -->
         <div class="breadcrumb-fixed mb-3">
@@ -1033,6 +1124,7 @@
            <li class="nav-item"><button class="nav-link" id="relation-tab" data-bs-toggle="tab" data-bs-target="#relationCenter"><i class="fas fa-link"></i>合同-档案关联</button></li>
             <!-- 新增工具百宝箱选项卡 -->
             <li class="nav-item"><button class="nav-link" id="toolbox-tab" data-bs-toggle="tab" data-bs-target="#toolboxCenter"><i class="fas fa-tools"></i>工具百宝箱</button></li>
+<li class="nav-item"><button class="nav-link" id="messageboard-tab" data-bs-toggle="tab" data-bs-target="#messageboardCenter"><i class="fas fa-comments"></i>留言板</button></li>
         </ul>
 
         <div class="tab-content" id="mainTabContent">
@@ -1942,6 +2034,10 @@
                                         <i class="fas fa-search search-icon" id="toolboxSearchIcon"></i>
                                         <input type="text" id="toolboxSearchInput" placeholder="搜索标题、内容或用途...">
                                     </div>
+<select id="toolboxSortOrder" class="form-select" style="width: 130px;">
+    <option value="likes">按点赞数排序</option>
+    <option value="time">按时间排序</option>
+</select>
                                     <button class="btn btn-sm btn-success" id="exportToolboxBtn"><i class="fas fa-file-excel"></i> 导出Excel</button>
                                     <div class="refresh-info" onclick="refreshToolboxList()">
                                         <i class="fas fa-sync-alt"></i>
@@ -2015,6 +2111,51 @@
     </main>
 </div>
 
+<!-- 留言板中心（新增） -->
+<div class="tab-pane fade" id="messageboardCenter">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- 发布新留言 -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <span><i class="fas fa-edit me-2"></i>发布新留言</span>
+                </div>
+                <div class="card-body">
+                    <textarea class="form-control" id="newMessageContent" rows="3" placeholder="请输入留言内容..."></textarea>
+                    <div class="mt-3">
+                        <button class="btn btn-primary" id="publishMessageBtn">发布留言</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 留言列表 -->
+            <div class="card">
+                <div class="card-header">
+                    <span><i class="fas fa-comments me-2"></i>留言板 <span id="messageCount" class="text-muted small"></span></span>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon" id="messageSearchIcon"></i>
+                            <input type="text" id="messageSearchInput" placeholder="搜索留言...">
+                        </div>
+                        <select id="sortOrderSelect" class="form-select" style="width: 130px;">
+                            <option value="likes">按点赞数排序</option>
+                            <option value="time">按时间排序</option>
+                        </select>
+                        <div class="refresh-info" onclick="refreshMessageBoard()">
+                            <i class="fas fa-sync-alt"></i>
+                            <span id="messageLastRefresh">刚刚</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" id="messageListContainer">
+                    <div class="text-center py-5 text-muted">加载中...</div>
+                </div>
+                <div class="card-footer" id="messagePagination" style="text-align: center;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 各种模态框（原样保留） -->
 <div class="modal fade" id="deleteReasonModal" tabindex="-1">
     <div class="modal-dialog">
@@ -2024,6 +2165,61 @@
                 <div class="mb-3"><label class="form-label fw-semibold">删除原因</label><textarea class="form-control" id="deleteReason" rows="3"></textarea></div>
             </div>
             <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button><button type="button" class="btn btn-danger" id="confirmDeleteFirst">确定删除</button></div>
+        </div>
+    </div>
+</div>
+
+<!-- 公告管理模态框 - 红色系 -->
+<div class="modal fade" id="announcementModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #e74c3c; color: white;">
+                <h5 class="modal-title"><i class="fas fa-bullhorn me-2"></i>公告管理</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">公告内容</label>
+                    <textarea class="form-control" id="announcementContent" rows="4" placeholder="请输入公告内容..."></textarea>
+                    <div class="form-text text-muted">支持HTML标签，如 &lt;strong&gt;加粗&lt;/strong&gt;、&lt;span style="color:#e74c3c"&gt;彩色文字&lt;/span&gt; 等</div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="announcementEnabled">
+                        <label class="form-check-label" for="announcementEnabled">启用公告滚动显示</label>
+                    </div>
+                </div>
+                <div class="mb-3" id="announcementAuthorInfo" style="background: #fff5f5; padding: 10px; border-radius: 8px;">
+                    <i class="fas fa-user-circle me-1" style="color: #e74c3c;"></i>
+                    <span class="text-muted">发布人：</span>
+                    <span id="announcementAuthorDisplay" style="font-weight: 500;"></span>
+                    <span class="text-muted ms-2">发布时间：</span>
+                    <span id="announcementTimeDisplay" style="font-weight: 500;"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="saveAnnouncementBtn" style="background: #e74c3c; border: none;">保存公告</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除确认模态框（用于留言板） -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">确认删除</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>确定要删除这条留言吗？此操作不可撤销，所有回复也会被删除。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">确认删除</button>
+            </div>
         </div>
     </div>
 </div>
@@ -2512,6 +2708,7 @@
             toolMyPage: 1,      // 我的工具页码
             toolSearchTerm: '', // 工具搜索关键词
             toolMySearchTerm: '', // 我的工具搜索关键词
+            toolSortOrder: 'likes', // 工具列表排序方式：'likes' 或 'time'
             editingToolId: null, // 正在编辑的工具ID (新增)
             newToolData: null,   // 新增临时工具数据 (新增)
 
@@ -2588,7 +2785,7 @@ contractUploadFailedRecords: [],
             { name: '更新人', type: 'text', editable: false, required: false, key: 'updatedBy', permission: 'all' },
             { name: '档案内容', type: 'text', editable: true, required: true, maxLength: 0, key: 'content', permission: 'all', default: '' },
             { name: '是否移交', type: 'checkbox', editable: true, required: false, key: 'isTransferred', permission: 'super', default: false },
-            { name: '存放地点', type: 'text', editable: true, required: false, maxLength: 50, key: 'location', permission: 'super', default: '' },
+            { name: '存放地点', type: 'text', editable: true, required: false, maxLength: 50, key: 'location', permission: 'all', default: '' },
             { name: '备注', type: 'text', editable: true, required: true, maxLength: 0, key: 'remarks', permission: 'all', default: '' },
             { name: '附件', type: 'file', editable: true, required: false, key: 'attachments', permission: 'all', default: [] }
         ];
@@ -2618,7 +2815,7 @@ contractUploadFailedRecords: [],
             { name: '收付款进度', type: 'text', editable: true, required: false, maxLength: 50, key: 'paymentProgress', permission: 'all' },
             { name: '合同内容', type: 'text', editable: true, required: true, maxLength: 0, key: 'content', permission: 'all', default: '' },
             { name: '是否移交', type: 'checkbox', editable: true, required: false, key: 'isTransferred', permission: 'super', default: false },
-            { name: '存放地点', type: 'text', editable: true, required: false, maxLength: 50, key: 'location', permission: 'super', default: '' },
+            { name: '存放地点', type: 'text', editable: true, required: false, maxLength: 50, key: 'location', permission: 'all', default: '' },
             { name: '备注', type: 'text', editable: true, required: false, maxLength: 0, key: 'remarks', permission: 'all', default: '' },
             { name: '创建时间', type: 'datetime', editable: false, required: false, key: 'createdAt', permission: 'all' },
             { name: '创建人', type: 'text', editable: false, required: false, key: 'createdBy', permission: 'all' },
@@ -2634,6 +2831,159 @@ contractUploadFailedRecords: [],
         function canManageAccounts() { return isSuper() || isAdmin(); }
         function canManageConfig() { return isSuper() || isAdmin(); }
 
+// 公告管理相关函数
+let announcementData = {
+    text: '欢迎使用安养链档案与合同管理系统',
+    enabled: true,
+    author: '系统管理员',
+    publishTime: ''
+};
+
+// 加载公告
+async function loadAnnouncement() {
+    try {
+        const { data, error } = await supabase
+            .from('system_config')
+            .select('value')
+            .eq('key', 'announcement')
+            .single();
+        
+        if (!error && data) {
+            const config = JSON.parse(data.value);
+            announcementData.text = config.text || '欢迎使用安养链档案与合同管理系统';
+            announcementData.enabled = config.enabled !== undefined ? config.enabled : true;
+            announcementData.author = config.author || '系统管理员';
+            announcementData.publishTime = config.publishTime || formatDateTime(new Date());
+        } else {
+            const defaultConfig = {
+                text: '欢迎使用安养链档案与合同管理系统',
+                enabled: true,
+                author: '系统管理员',
+                publishTime: formatDateTime(new Date())
+            };
+            await supabase
+                .from('system_config')
+                .insert([{ key: 'announcement', value: JSON.stringify(defaultConfig) }]);
+            announcementData = defaultConfig;
+        }
+        updateAnnouncementDisplay();
+    } catch (err) {
+        console.error('加载公告失败:', err);
+    }
+}
+
+// 保存公告
+async function saveAnnouncement(text, enabled) {
+    try {
+        const now = new Date();
+        const config = {
+            text: text,
+            enabled: enabled,
+            author: currentUser?.fullName || currentUser?.username || '系统管理员',
+            publishTime: formatDateTime(now)
+        };
+        
+        const { error } = await supabase
+            .from('system_config')
+            .upsert({ key: 'announcement', value: JSON.stringify(config) });
+        
+        if (!error) {
+            announcementData = config;
+            updateAnnouncementDisplay();
+            return true;
+        }
+        return false;
+    } catch (err) {
+        console.error('保存公告失败:', err);
+        return false;
+    }
+}
+
+// 更新公告显示
+function updateAnnouncementDisplay() {
+    const announcementText = document.getElementById('announcementText');
+    const announcementAuthorName = document.getElementById('announcementAuthorName');
+    const announcementAuthorSpan = document.getElementById('announcementAuthor');
+    
+    if (announcementText) {
+        announcementText.innerHTML = announcementData.enabled ? announcementData.text : '暂无公告';
+    }
+    
+    if (announcementAuthorName) {
+        if (announcementData.enabled && announcementData.author) {
+            announcementAuthorName.innerText = announcementData.author;
+            if (announcementAuthorSpan) announcementAuthorSpan.style.display = 'inline';
+        } else {
+            if (announcementAuthorSpan) announcementAuthorSpan.style.display = 'none';
+        }
+    }
+    
+    const announcementScroll = document.getElementById('announcementScroll');
+    if (announcementScroll) {
+        if (announcementData.enabled && announcementData.text !== '暂无公告') {
+            announcementScroll.style.animation = 'scrollAnnouncement 25s linear infinite';
+        } else {
+            announcementScroll.style.animation = 'none';
+        }
+    }
+}
+
+// 打开公告管理模态框
+window.openAnnouncementModal = function() {
+    const contentTextarea = document.getElementById('announcementContent');
+    const enabledCheckbox = document.getElementById('announcementEnabled');
+    const authorDisplay = document.getElementById('announcementAuthorDisplay');
+    const timeDisplay = document.getElementById('announcementTimeDisplay');
+    
+    if (contentTextarea) contentTextarea.value = announcementData.text;
+    if (enabledCheckbox) enabledCheckbox.checked = announcementData.enabled;
+    if (authorDisplay) authorDisplay.innerText = announcementData.author || '暂无';
+    if (timeDisplay) timeDisplay.innerText = announcementData.publishTime || '暂无';
+    
+    const modal = new bootstrap.Modal(document.getElementById('announcementModal'));
+    modal.show();
+};
+
+// 保存公告按钮事件
+document.getElementById('saveAnnouncementBtn')?.addEventListener('click', async function() {
+    const text = document.getElementById('announcementContent')?.value || '';
+    const enabled = document.getElementById('announcementEnabled')?.checked || false;
+    
+    if (!text.trim()) {
+        alert('公告内容不能为空');
+        return;
+    }
+    
+    const success = await saveAnnouncement(text, enabled);
+    if (success) {
+        alert('公告保存成功！');
+        bootstrap.Modal.getInstance(document.getElementById('announcementModal')).hide();
+    } else {
+        alert('保存失败，请重试');
+    }
+});
+
+// 显示/隐藏公告管理按钮（仅超级管理员和管理员可见）
+function updateAnnouncementManageBtn() {
+    const btn = document.getElementById('announcementManageBtn');
+    if (!btn) return;
+    
+    // 从 localStorage 读取当前用户
+    let user = null;
+    try {
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+            user = JSON.parse(savedUser);
+        }
+    } catch(e) {}
+    
+    // 如果用户是超级管理员或管理员，显示按钮
+    if (user && (user.role === 'super' || user.role === 'admin')) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+}
         // 获取管理员用户名
         function getAllAdminUsernames() {
             return appData.users
@@ -2643,11 +2993,15 @@ contractUploadFailedRecords: [],
 
         // 中国时间处理
         function toChinaTime(date) {
-            if (!date) return new Date();
-            const d = new Date(date);
-            const offset = d.getTimezoneOffset();
-            return new Date(d.getTime() + (offset + 480) * 60000);
-        }
+    if (!date) return new Date();
+    const d = new Date(date);
+    // 如果日期字符串已经包含时区信息，直接返回
+    if (d.toString().includes('+08') || (date.toString && date.toString().includes('+08'))) {
+        return d;
+    }
+    // 否则加8小时
+    return new Date(d.getTime() + (8 * 60 * 60 * 1000));
+}
 
         function formatDateTime(date) {
             if (!date) return '';
@@ -2686,10 +3040,11 @@ contractUploadFailedRecords: [],
         setInterval(updateCurrentTime, 1000);
 
         function getChinaISOString() {
-            const now = new Date();
-            const chinaNow = toChinaTime(now);
-            return chinaNow.toISOString();
-        }
+    const now = new Date();
+    // 直接获取中国时区时间（UTC+8）
+    const chinaTime = new Date(now.getTime() + (8 * 60 * 60 * 1000));
+    return chinaTime.toISOString();
+}
 
         function generateRecordNumber() {
             const now = toChinaTime(new Date());
@@ -3052,6 +3407,7 @@ appData.relations = relations;
                 
                 console.log('数据加载完成');
                 refreshAll();
+updateAnnouncementManageBtn();
 updateTotalCounts();
                 refreshTagSelects();
                 refreshContractTagSelects();
@@ -3356,6 +3712,10 @@ updateTotalCounts();
                     document.getElementById('selfChangePwdBtn').style.display = 'none';
                 }
                 await loadAllData();
+await loadAnnouncement();
+updateAnnouncementManageBtn();
+await loadUserLikes();
+await loadMessages();
                 // 初始化 Select2
                 $('.tag-search-select').select2({
                     theme: 'bootstrap-5',
@@ -3428,6 +3788,10 @@ updateTotalCounts();
                         document.getElementById('selfChangePwdBtn').style.display = 'none';
                     }
                     loadAllData().then(() => {
+loadAnnouncement(); 
+updateAnnouncementManageBtn();
+loadUserLikes();
+loadMessages();
                         $('.tag-search-select').select2({
                             theme: 'bootstrap-5',
                             placeholder: $(this).data('placeholder') || '选择标签',
@@ -6048,7 +6412,7 @@ updateTotalCounts();
                                 value = `<textarea class="inline-edit-input" id="${elementId}" rows="2" data-column-name="${col.name}">${record.remarks || ''}</textarea>`;
                             } else if (col.key === 'isTransferred' && (isSuper() || isAdmin())) {
                                 value = `<input type="checkbox" class="form-check-input" id="${elementId}" ${record.isTransferred ? 'checked' : ''}>`;
-                            } else if (col.key === 'location' && (isSuper() || isAdmin())) {
+                            } else if (col.key === 'location') {
                                 value = `<input type="text" class="inline-edit-input" id="${elementId}" value="${record.location || ''}" maxlength="50" data-column-name="${col.name}">`;
                             } else if (col.key === 'attachments') {
                                 const files = record.attachments || [];
@@ -6479,25 +6843,79 @@ updateTotalCounts();
             renderDirectoryMy();
         };
 
-        window.deleteRecord = async function(recordId) {
-            if (!confirm('确定要删除该档案吗？')) return;
-            const record = appData.records.find(r => String(r.id) === String(recordId));
-            if (record && record.attachments && record.attachments.length > 0) {
-                const { error } = await supabase.storage.from('attachments').remove(record.attachments);
-                if (error) {
-                    alert('删除附件文件失败：' + error.message);
-                    return;
-                }
+       window.deleteRecord = async function(recordId) {
+    if (!confirm('确定要删除该档案吗？')) return;
+    
+    const record = appData.records.find(r => String(r.id) === String(recordId));
+    if (!record) {
+        alert('档案不存在');
+        return;
+    }
+    
+    try {
+        // 1. 先删除档案关联的合同关系
+        const { error: relError } = await supabase
+            .from('contract_record_relations')
+            .delete()
+            .eq('record_id', record.id);
+        
+        if (relError) {
+            console.warn('删除关联关系失败:', relError);
+        }
+        
+        // 2. 删除档案分配记录
+        const { error: assignError } = await supabase
+            .from('assignRecords')
+            .delete()
+            .eq('record_id', record.id);
+        
+        if (assignError) {
+            console.warn('删除分配记录失败:', assignError);
+        }
+        
+        // 3. 删除附件（如果有）
+        if (record.attachments && record.attachments.length > 0) {
+            const { error: fileError } = await supabase
+                .storage
+                .from('attachments')
+                .remove(record.attachments);
+            
+            if (fileError) {
+                console.warn('删除附件失败:', fileError);
             }
-            const { error } = await supabase.from('records').delete().eq('id', record.id);
-            if (error) {
-                alert('删除失败：' + error.message);
-            } else {
-                appData.records = appData.records.filter(r => r.id !== record.id);
-                await loadAllData();
-                alert('删除成功！');
-            }
-        };
+        }
+        
+        // 4. 删除档案本身
+        const { error } = await supabase
+            .from('records')
+            .delete()
+            .eq('id', record.id);
+        
+        if (error) {
+            alert('删除失败：' + error.message);
+            return;
+        }
+        
+        // 5. 更新本地数据
+        appData.records = appData.records.filter(r => r.id !== record.id);
+        appData.relations = appData.relations.filter(r => r.record_id !== record.id);
+        appData.assignRecords = appData.assignRecords.filter(r => r.record_id !== record.id);
+        
+        // 6. 刷新表格
+        renderDirectoryAll();
+        renderDirectoryMy();
+        renderDirectoryTransfer();
+        
+        // 7. 更新总数统计
+        updateTotalCounts();
+        
+        alert('删除成功！');
+        
+    } catch (err) {
+        console.error('删除失败:', err);
+        alert('删除失败：' + err.message);
+    }
+};
 
         window.downloadFile = async function(recordId, filePath) {
             try {
@@ -7572,7 +7990,7 @@ updateTotalCounts();
                                 value = `<textarea class="inline-edit-input" id="${elementId}" rows="2" data-column-name="${col.name}">${contract.remarks || ''}</textarea>`;
                             } else if (col.key === 'isTransferred' && (isSuper() || isAdmin())) {
                                 value = `<input type="checkbox" class="form-check-input" id="${elementId}" ${contract.isTransferred ? 'checked' : ''}>`;
-                            } else if (col.key === 'location' && (isSuper() || isAdmin())) {
+                            } else if (col.key === 'location') {
                                 value = `<input type="text" class="inline-edit-input" id="${elementId}" value="${contract.location || ''}" maxlength="50" data-column-name="${col.name}">`;
                             } else if (col.key === 'contractTags') {
                                 // 标签选择改为弹窗模式
@@ -7956,17 +8374,81 @@ updateTotalCounts();
         };
 
         window.deleteContract = async function(contractId) {
-            if (!confirm('确定要删除该合同吗？')) return;
-            const contract = appData.contracts.find(c => String(c.id) === String(contractId));
-            const { error } = await supabase.from('contracts').delete().eq('id', contract.id);
-            if (error) {
-                alert('删除失败：' + error.message);
-            } else {
-                appData.contracts = appData.contracts.filter(c => c.id !== contract.id);
-                await loadAllData();
-                alert('删除成功！');
-            }
-        };
+    if (!confirm('确定要删除该合同吗？')) return;
+    
+    const contract = appData.contracts.find(c => String(c.id) === String(contractId));
+    if (!contract) {
+        alert('合同不存在');
+        return;
+    }
+    
+    try {
+        // 1. 先删除合同关联的档案关系（避免外键约束问题）
+        const { error: relError } = await supabase
+            .from('contract_record_relations')
+            .delete()
+            .eq('contract_id', contract.id);
+        
+        if (relError) {
+            console.warn('删除关联关系失败:', relError);
+            // 不影响继续删除合同
+        }
+        
+        // 2. 删除合同分配记录
+        const { error: assignError } = await supabase
+            .from('contract_assign_records')
+            .delete()
+            .eq('contract_id', contract.id);
+        
+        if (assignError) {
+            console.warn('删除分配记录失败:', assignError);
+        }
+        
+        // 3. 删除合同本身
+        const { error } = await supabase
+            .from('contracts')
+            .delete()
+            .eq('id', contract.id);
+        
+        if (error) {
+            alert('删除失败：' + error.message);
+            return;
+        }
+        
+        // 4. 更新本地数据（只更新必要的数据，不重新加载全部）
+        appData.contracts = appData.contracts.filter(c => c.id !== contract.id);
+        
+        // 5. 删除本地关联关系
+        appData.relations = appData.relations.filter(r => r.contract_id !== contract.id);
+        
+        // 6. 删除本地分配记录
+        appData.contractAssignRecords = appData.contractAssignRecords.filter(r => r.contract_id !== contract.id);
+        
+        // 7. 刷新相关的表格显示
+        renderContractDirectoryAll();
+        renderContractDirectoryMy();
+        renderContractDirectoryTransfer();
+        
+        // 8. 如果当前在关联中心且删除的是当前选中的合同，清除选中状态
+        if (currentRelContract && currentRelContract.id === contract.id) {
+            currentRelContract = null;
+            const selectedName = document.getElementById('selectedContractName');
+            if (selectedName) selectedName.innerText = '未选择合同';
+            renderRelArchiveTable();
+            renderRelExisting();
+            renderRelationData();
+        }
+        
+        // 9. 更新总数统计
+        updateTotalCounts();
+        
+        alert('删除成功！');
+        
+    } catch (err) {
+        console.error('删除失败:', err);
+        alert('删除失败：' + err.message);
+    }
+};
 
         window.showContractPermissionDetail = function(contractId) {
             const contract = appData.contracts.find(c => String(c.id) === String(contractId));
@@ -8481,6 +8963,13 @@ function exportArchiveTemplate() {
                 );
             }
             
+// 应用排序
+if (appData.toolSortOrder === 'likes') {
+    filtered.sort((a, b) => (b.likeCount || 0) - (a.likeCount || 0));
+} else if (appData.toolSortOrder === 'time') {
+    filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
             // 分页
             const total = Math.ceil(filtered.length / pageSize) || 1;
             if (appData.toolPage > total) appData.toolPage = total;
@@ -8773,78 +9262,82 @@ function exportArchiveTemplate() {
             }
         };
 
-        // 切换点赞状态
-        async function toggleToolLike(toolId, btnElement) {
-            if (!currentUser) return;
+ // 切换点赞状态
+async function toggleToolLike(toolId, btnElement) {
+    if (!currentUser) return;
+    
+    const liked = btnElement.dataset.liked === 'true';
+    const likeCountSpan = document.getElementById(`like-count-${toolId}`);
+    const currentCount = parseInt(likeCountSpan.innerText) || 0;
+    
+    try {
+        if (liked) {
+            // 取消点赞
+            const { error } = await supabase
+                .from('tool_likes')
+                .delete()
+                .eq('tool_id', toolId)
+                .eq('user_id', currentUser.id);
+            if (error) throw error;
             
-            const liked = btnElement.dataset.liked === 'true';
-            const likeCountSpan = document.getElementById(`like-count-${toolId}`);
-            const currentCount = parseInt(likeCountSpan.innerText) || 0;
+            // 更新工具点赞数
+            const { error: updateError } = await supabase
+                .from('tools')
+                .update({ likeCount: currentCount - 1 })
+                .eq('id', toolId);
+            if (updateError) throw updateError;
             
-            try {
-                if (liked) {
-                    // 取消点赞
-                    const { error } = await supabase
-                        .from('tool_likes')
-                        .delete()
-                        .eq('tool_id', toolId)
-                        .eq('user_id', currentUser.id);
-                    
-                    if (error) throw error;
-                    
-                    // 更新工具点赞数
-                    const { error: updateError } = await supabase
-                        .from('tools')
-                        .update({ likeCount: currentCount - 1 })
-                        .eq('id', toolId);
-                    
-                    if (updateError) throw updateError;
-                    
-                    // 更新本地数据
-                    appData.toolLikes = appData.toolLikes.filter(l => !(l.tool_id === toolId && l.user_id === currentUser.id));
-                    const tool = appData.tools.find(t => t.id === toolId);
-                    if (tool) tool.likeCount = currentCount - 1;
-                    
-                    // 更新UI
-                    likeCountSpan.innerText = currentCount - 1;
-                    btnElement.dataset.liked = 'false';
-                    btnElement.classList.remove('btn-primary');
-                    btnElement.classList.add('btn-outline-primary');
-                    btnElement.innerHTML = '<i class="fas fa-thumbs-up"></i> 点赞';
-                    
-                } else {
-                    // 添加点赞
-                    const { error } = await supabase
-                        .from('tool_likes')
-                        .insert([{ tool_id: toolId, user_id: currentUser.id, created_at: new Date().toISOString() }]);
-                    
-                    if (error) throw error;
-                    
-                    // 更新工具点赞数
-                    const { error: updateError } = await supabase
-                        .from('tools')
-                        .update({ likeCount: currentCount + 1 })
-                        .eq('id', toolId);
-                    
-                    if (updateError) throw updateError;
-                    
-                    // 更新本地数据
-                    appData.toolLikes.push({ tool_id: toolId, user_id: currentUser.id });
-                    const tool = appData.tools.find(t => t.id === toolId);
-                    if (tool) tool.likeCount = currentCount + 1;
-                    
-                    // 更新UI
-                    likeCountSpan.innerText = currentCount + 1;
-                    btnElement.dataset.liked = 'true';
-                    btnElement.classList.remove('btn-outline-primary');
-                    btnElement.classList.add('btn-primary');
-                    btnElement.innerHTML = '<i class="fas fa-thumbs-up"></i> 已点赞';
-                }
-            } catch (err) {
-                console.error('点赞操作失败:', err);
-                alert('操作失败：' + err.message);
-            }
+            // 更新本地数据
+            appData.toolLikes = appData.toolLikes.filter(l => !(l.tool_id === toolId && l.user_id === currentUser.id));
+            const tool = appData.tools.find(t => t.id === toolId);
+            if (tool) tool.likeCount = currentCount - 1;
+            
+            // 更新UI
+            likeCountSpan.innerText = currentCount - 1;
+            btnElement.dataset.liked = 'false';
+            btnElement.classList.remove('btn-primary');
+            btnElement.classList.add('btn-outline-primary');
+            btnElement.innerHTML = '<i class="fas fa-thumbs-up"></i> 点赞';
+            
+        } else {
+            // 添加点赞
+            const { error } = await supabase
+                .from('tool_likes')
+                .insert([{ tool_id: toolId, user_id: currentUser.id, created_at: new Date().toISOString() }]);
+            if (error) throw error;
+            
+            // 更新工具点赞数
+            const { error: updateError } = await supabase
+                .from('tools')
+                .update({ likeCount: currentCount + 1 })
+                .eq('id', toolId);
+            if (updateError) throw updateError;
+            
+            // 更新本地数据
+            appData.toolLikes.push({ tool_id: toolId, user_id: currentUser.id });
+            const tool = appData.tools.find(t => t.id === toolId);
+            if (tool) tool.likeCount = currentCount + 1;
+            
+            // 更新UI
+            likeCountSpan.innerText = currentCount + 1;
+            btnElement.dataset.liked = 'true';
+            btnElement.classList.remove('btn-outline-primary');
+            btnElement.classList.add('btn-primary');
+            btnElement.innerHTML = '<i class="fas fa-thumbs-up"></i> 已点赞';
         }
+        
+        // 关键：重新加载所有数据，确保数据完全同步
+        await loadAllData();
+        
+        // 刷新列表（保持当前页）
+        renderToolboxList();
+        renderToolboxMyList();
+        
+    } catch (err) {
+        console.error('点赞操作失败:', err);
+        alert('操作失败：' + err.message);
+    }
+}
 
         // 打开新增工具模态框（仅在我的工具中使用）
         function openAddToolModal() {
@@ -8955,6 +9448,13 @@ function exportArchiveTemplate() {
                 renderToolboxList();
             }
         };
+
+// 工具列表排序下拉框事件
+document.getElementById('toolboxSortOrder')?.addEventListener('change', function() {
+    appData.toolSortOrder = this.value;
+    appData.toolPage = 1;
+    renderToolboxList();
+});
 
         document.getElementById('toolboxMySearchIcon').onclick = function() {
             appData.toolMySearchTerm = document.getElementById('toolboxMySearchInput').value.toLowerCase();
@@ -9671,7 +10171,439 @@ if (currentUser) {
     let myContractsSpan = document.getElementById('contractDirMyTotalCount');
     if (myContractsSpan) myContractsSpan.innerText = myContractsCount;
 }
+// ============================================
+// 留言板功能
+// ============================================
 
+let messages = [];
+let messagePage = 1;
+let messageTotalPages = 1;
+let messageSearchTerm = '';
+let sortOrder = 'likes'; // 'likes' 或 'time'
+const messagePageSize = 10;
+let pendingDeleteMessageId = null;
+
+// 存储用户点赞状态
+let userMessageLikes = new Set();
+let userReplyLikes = new Set();
+
+// 格式化简短时间
+function formatDateTimeShort(date) {
+    if (!date) return '';
+    const d = toChinaTime(date);
+    if (!d || isNaN(d.getTime())) return '';
+    return `${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+// 获取中国时区ISO时间
+function getChinaTimeISO() {
+    const now = new Date();
+    return new Date(now.getTime() + (8 * 60 * 60 * 1000)).toISOString();
+}
+
+// 加载用户点赞状态
+async function loadUserLikes() {
+    if (!currentUser) return;
+    try {
+        const { data: messageLikes } = await supabase
+            .from('message_likes')
+            .select('message_id')
+            .eq('user_id', currentUser.username);
+        if (messageLikes) userMessageLikes = new Set(messageLikes.map(l => l.message_id));
+        
+        const { data: replyLikes } = await supabase
+            .from('reply_likes')
+            .select('reply_id')
+            .eq('user_id', currentUser.username);
+        if (replyLikes) userReplyLikes = new Set(replyLikes.map(l => l.reply_id));
+    } catch (err) { console.error('加载点赞状态失败:', err); }
+}
+
+// 构建楼中楼树形结构
+function buildReplyTree(replies) {
+    const replyMap = new Map();
+    const rootReplies = [];
+    replies.forEach(reply => { reply.children = []; replyMap.set(reply.id, reply); });
+    replies.forEach(reply => {
+        if (reply.parent_id && replyMap.has(reply.parent_id)) {
+            replyMap.get(reply.parent_id).children.push(reply);
+        } else {
+            rootReplies.push(reply);
+        }
+    });
+    const sortReplies = (list) => {
+        list.sort((a, b) => (b.like_count || 0) - (a.like_count || 0));
+        list.forEach(r => { if (r.children) sortReplies(r.children); });
+    };
+    sortReplies(rootReplies);
+    return rootReplies;
+}
+
+function renderReplyTree(replies, level = 0, messageId) {
+    if (!replies || replies.length === 0) return '';
+    let html = '';
+    for (let reply of replies) {
+        const isAdmin = currentUser?.role === 'super' || currentUser?.role === 'admin';
+        const isOwner = currentUser?.username === reply.author;
+        const canDelete = isAdmin || isOwner;
+        const levelClass = level > 5 ? 'level-5' : `level-${level}`;
+        const isLiked = userReplyLikes.has(reply.id);
+        
+        html += `
+        <div class="reply-item ${levelClass}" data-reply-id="${reply.id}">
+            <div class="reply-header">
+                <div>
+                    <span class="reply-author"><i class="fas fa-reply-all"></i> ${escapeHtml(reply.author)}</span>
+                    ${reply.reply_to ? `<span class="mention-text">回复 @${escapeHtml(reply.reply_to)}</span>` : ''}
+                    <span class="reply-time">${formatDateTimeShort(reply.created_at)}</span>
+                </div>
+                <div class="reply-actions">
+                    <button class="reply-to-btn" onclick="showReplyForm('${messageId}', '${reply.id}', '${escapeHtml(reply.author)}')"><i class="fas fa-reply"></i> 回复</button>
+                    ${canDelete ? `<button class="delete-reply-btn" onclick="deleteReply('${reply.id}')"><i class="fas fa-trash-alt"></i> 删除</button>` : ''}
+                </div>
+            </div>
+            <div class="reply-content">${escapeHtml(reply.content).replace(/\n/g, '<br>')}</div>
+            <div class="reply-stats">
+                <button class="reply-like-btn ${isLiked ? 'liked' : ''}" onclick="toggleReplyLike('${reply.id}', this)">
+                    <i class="fas fa-thumbs-up"></i> <span class="like-count">${reply.like_count || 0}</span>
+                </button>
+            </div>
+            <div id="reply-form-${messageId}-${reply.id}" class="reply-form-container" style="display: none;"></div>
+            ${renderReplyTree(reply.children || [], level + 1, messageId)}
+        </div>
+        `;
+    }
+    return html;
+}
+
+async function loadMessages() {
+    try {
+        let query = supabase.from('messages').select('*, replies:message_replies(*)', { count: 'exact' });
+        if (messageSearchTerm) query = query.ilike('content', `%${messageSearchTerm}%`);
+        
+        if (sortOrder === 'likes') {
+            query = query.order('like_count', { ascending: false }).order('created_at', { ascending: false });
+        } else {
+            query = query.order('created_at', { ascending: false });
+        }
+        
+        const { data, error, count } = await query.range((messagePage - 1) * messagePageSize, messagePage * messagePageSize - 1);
+        if (error) throw error;
+        
+        messages = data || [];
+        messageTotalPages = Math.ceil((count || 0) / messagePageSize);
+        
+        for (let msg of messages) {
+            if (msg.replies && msg.replies.length > 0) {
+                msg.replyTree = buildReplyTree(msg.replies);
+            } else {
+                msg.replyTree = [];
+            }
+        }
+        
+        renderMessageList();
+        renderMessagePagination();
+        const countSpan = document.getElementById('messageCount');
+        if (countSpan) countSpan.innerText = `(${count || 0}条留言)`;
+    } catch (err) {
+        console.error('加载留言失败:', err);
+        const container = document.getElementById('messageListContainer');
+        if (container) container.innerHTML = '<div class="text-center py-5 text-danger">加载失败，请刷新重试</div>';
+    }
+}
+
+function renderMessageList() {
+    const container = document.getElementById('messageListContainer');
+    if (!container) return;
+    if (messages.length === 0) {
+        container.innerHTML = '<div class="text-center py-5 text-muted">暂无留言，来发布第一条吧~</div>';
+        return;
+    }
+    let html = '';
+    for (let msg of messages) {
+        const isAdmin = currentUser?.role === 'super' || currentUser?.role === 'admin';
+        const isOwner = currentUser?.username === msg.author;
+        const canDelete = isAdmin || isOwner;
+        const isResolved = msg.resolved === true;
+        const isLiked = userMessageLikes.has(msg.id);
+        
+        html += `
+        <div class="message-item" data-message-id="${msg.id}">
+            <div class="message-header">
+                <div>
+                    <span class="message-author"><i class="fas fa-user-circle"></i> ${escapeHtml(msg.author)}</span>
+                    <span class="message-time">${formatDateTimeShort(msg.created_at)}</span>
+                    ${isResolved ? '<span class="badge-resolved"><i class="fas fa-check"></i> 已解决</span>' : ''}
+                </div>
+                <div class="message-actions">
+                    ${!isResolved && isAdmin ? `<button class="resolve-btn" onclick="toggleResolve('${msg.id}', true)"><i class="fas fa-check-circle"></i> 标记解决</button>` : ''}
+                    ${isResolved && isAdmin ? `<button class="resolve-btn resolved" onclick="toggleResolve('${msg.id}', false)"><i class="fas fa-undo"></i> 取消解决</button>` : ''}
+                    <button class="reply-to-btn" onclick="showMessageReplyForm('${msg.id}')"><i class="fas fa-reply"></i> 回复</button>
+                    ${canDelete ? `<button class="delete-btn" onclick="showDeleteConfirm('${msg.id}')"><i class="fas fa-trash-alt"></i> 删除</button>` : ''}
+                </div>
+            </div>
+            <div class="message-content">${escapeHtml(msg.content).replace(/\n/g, '<br>')}</div>
+            <div class="message-stats">
+                <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleMessageLike('${msg.id}', this)">
+                    <i class="fas fa-thumbs-up"></i> <span class="like-count">${msg.like_count || 0}</span>
+                </button>
+            </div>
+            <div id="message-reply-form-${msg.id}" class="reply-form-container" style="display: none;"></div>
+            <div class="reply-thread">
+                ${renderReplyTree(msg.replyTree, 1, msg.id)}
+            </div>
+        </div>
+        `;
+    }
+    container.innerHTML = html;
+}
+
+window.toggleMessageLike = async function(messageId, btnElement) {
+    if (!currentUser) { alert('请先登录'); return; }
+    
+    const isLiked = btnElement.classList.contains('liked');
+    const likeCountSpan = btnElement.querySelector('.like-count');
+    const currentCount = parseInt(likeCountSpan.innerText) || 0;
+    
+    try {
+        if (isLiked) {
+            const { error } = await supabase.from('message_likes').delete().eq('message_id', messageId).eq('user_id', currentUser.username);
+            if (error) throw error;
+            const { error: updateError } = await supabase.from('messages').update({ like_count: currentCount - 1 }).eq('id', messageId);
+            if (updateError) throw updateError;
+            userMessageLikes.delete(messageId);
+            likeCountSpan.innerText = currentCount - 1;
+            btnElement.classList.remove('liked');
+        } else {
+            const { error } = await supabase.from('message_likes').insert([{ message_id: messageId, user_id: currentUser.username, created_at: new Date().toISOString() }]);
+            if (error) throw error;
+            const { error: updateError } = await supabase.from('messages').update({ like_count: currentCount + 1 }).eq('id', messageId);
+            if (updateError) throw updateError;
+            userMessageLikes.add(messageId);
+            likeCountSpan.innerText = currentCount + 1;
+            btnElement.classList.add('liked');
+        }
+        await loadMessages();
+    } catch (err) { console.error('点赞操作失败:', err); alert('操作失败：' + err.message); }
+};
+
+window.toggleReplyLike = async function(replyId, btnElement) {
+    if (!currentUser) { alert('请先登录'); return; }
+    
+    const isLiked = btnElement.classList.contains('liked');
+    const likeCountSpan = btnElement.querySelector('.like-count');
+    const currentCount = parseInt(likeCountSpan.innerText) || 0;
+    
+    try {
+        if (isLiked) {
+            const { error } = await supabase.from('reply_likes').delete().eq('reply_id', replyId).eq('user_id', currentUser.username);
+            if (error) throw error;
+            const { error: updateError } = await supabase.from('message_replies').update({ like_count: currentCount - 1 }).eq('id', replyId);
+            if (updateError) throw updateError;
+            userReplyLikes.delete(replyId);
+            likeCountSpan.innerText = currentCount - 1;
+            btnElement.classList.remove('liked');
+        } else {
+            const { error } = await supabase.from('reply_likes').insert([{ reply_id: replyId, user_id: currentUser.username, created_at: new Date().toISOString() }]);
+            if (error) throw error;
+            const { error: updateError } = await supabase.from('message_replies').update({ like_count: currentCount + 1 }).eq('id', replyId);
+            if (updateError) throw updateError;
+            userReplyLikes.add(replyId);
+            likeCountSpan.innerText = currentCount + 1;
+            btnElement.classList.add('liked');
+        }
+        await loadMessages();
+    } catch (err) { console.error('点赞操作失败:', err); alert('操作失败：' + err.message); }
+};
+
+window.showMessageReplyForm = function(messageId) {
+    const container = document.getElementById(`message-reply-form-${messageId}`);
+    if (!container) return;
+    if (container.style.display === 'block') { container.style.display = 'none'; container.innerHTML = ''; return; }
+    container.innerHTML = `
+        <div class="reply-form">
+            <textarea id="reply-content-${messageId}-message" rows="2" placeholder="写下你的回复..."></textarea>
+            <button onclick="submitMessageReply('${messageId}')">回复</button>
+            <button class="cancel-btn" onclick="hideReplyForm('message-reply-form-${messageId}')">取消</button>
+        </div>
+    `;
+    container.style.display = 'block';
+};
+
+window.showReplyForm = function(messageId, parentReplyId, replyToName) {
+    const container = document.getElementById(`reply-form-${messageId}-${parentReplyId}`);
+    if (!container) return;
+    if (container.style.display === 'block') { container.style.display = 'none'; container.innerHTML = ''; return; }
+    container.innerHTML = `
+        <div class="reply-form">
+            <textarea id="reply-content-${messageId}-${parentReplyId}" rows="2" placeholder="回复 @${escapeHtml(replyToName)} ..."></textarea>
+            <button onclick="submitNestedReply('${messageId}', '${parentReplyId}', '${escapeHtml(replyToName)}')">回复</button>
+            <button class="cancel-btn" onclick="hideReplyForm('reply-form-${messageId}-${parentReplyId}')">取消</button>
+        </div>
+    `;
+    container.style.display = 'block';
+};
+
+window.hideReplyForm = function(formId) {
+    const container = document.getElementById(formId);
+    if (container) { container.style.display = 'none'; container.innerHTML = ''; }
+};
+
+window.submitMessageReply = async function(messageId) {
+    const textarea = document.getElementById(`reply-content-${messageId}-message`);
+    const content = textarea.value.trim();
+    if (!content) { alert('请输入回复内容'); return; }
+    try {
+        const { error } = await supabase.from('message_replies').insert([{
+            message_id: messageId,
+            content: content,
+            author: currentUser.username,
+            author_name: currentUser.fullName || currentUser.username,
+            parent_id: null,
+            reply_to: null,
+            created_at: getChinaTimeISO(),
+            like_count: 0
+        }]);
+        if (error) throw error;
+        textarea.value = '';
+        hideReplyForm(`message-reply-form-${messageId}`);
+        await loadMessages();
+    } catch (err) { console.error('回复失败:', err); alert('回复失败：' + err.message); }
+};
+
+window.submitNestedReply = async function(messageId, parentReplyId, replyToName) {
+    const textarea = document.getElementById(`reply-content-${messageId}-${parentReplyId}`);
+    let content = textarea.value.trim();
+    if (!content) { alert('请输入回复内容'); return; }
+    let cleanContent = content;
+    const mentionPattern = new RegExp(`^@${escapeHtml(replyToName)}\\s*`, 'i');
+    cleanContent = cleanContent.replace(mentionPattern, '').trim();
+    try {
+        const { error } = await supabase.from('message_replies').insert([{
+            message_id: messageId,
+            content: cleanContent,
+            author: currentUser.username,
+            author_name: currentUser.fullName || currentUser.username,
+            parent_id: parentReplyId,
+            reply_to: replyToName,
+            created_at: getChinaTimeISO(),
+            like_count: 0
+        }]);
+        if (error) throw error;
+        textarea.value = '';
+        hideReplyForm(`reply-form-${messageId}-${parentReplyId}`);
+        await loadMessages();
+    } catch (err) { console.error('回复失败:', err); alert('回复失败：' + err.message); }
+};
+
+window.deleteReply = async function(replyId) {
+    if (!confirm('确定要删除这条回复吗？此操作不可撤销，其下的所有子回复也会被删除。')) return;
+    try {
+        const { error } = await supabase.from('message_replies').delete().eq('id', replyId);
+        if (error) throw error;
+        await loadMessages();
+    } catch (err) { console.error('删除失败:', err); alert('删除失败：' + err.message); }
+};
+
+window.showDeleteConfirm = function(messageId) {
+    pendingDeleteMessageId = messageId;
+    new bootstrap.Modal(document.getElementById('deleteConfirmModal')).show();
+};
+
+document.getElementById('confirmDeleteBtn')?.addEventListener('click', async function() {
+    if (!pendingDeleteMessageId) return;
+    try {
+        const { error } = await supabase.from('messages').delete().eq('id', pendingDeleteMessageId);
+        if (error) throw error;
+        bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal')).hide();
+        pendingDeleteMessageId = null;
+        messagePage = 1;
+        await loadMessages();
+        alert('删除成功！');
+    } catch (err) { console.error('删除失败:', err); alert('删除失败：' + err.message); }
+});
+
+window.toggleResolve = async function(messageId, resolved) {
+    try {
+        const { error } = await supabase.from('messages').update({ resolved: resolved }).eq('id', messageId);
+        if (error) throw error;
+        await loadMessages();
+    } catch (err) { console.error('操作失败:', err); alert('操作失败：' + err.message); }
+};
+
+async function publishMessage() {
+    const content = document.getElementById('newMessageContent').value.trim();
+    if (!content) { alert('请输入留言内容'); return; }
+    try {
+        const { error } = await supabase.from('messages').insert([{
+            content: content,
+            author: currentUser.username,
+            author_name: currentUser.fullName || currentUser.username,
+            created_at: getChinaTimeISO(),
+            resolved: false,
+            like_count: 0
+        }]);
+        if (error) throw error;
+        document.getElementById('newMessageContent').value = '';
+        messagePage = 1;
+        await loadMessages();
+        alert('留言发布成功！');
+    } catch (err) { console.error('发布留言失败:', err); alert('发布失败：' + err.message); }
+}
+
+function renderMessagePagination() {
+    const container = document.getElementById('messagePagination');
+    if (!container) return;
+    if (messageTotalPages <= 1) { container.innerHTML = ''; return; }
+    let html = '<nav><ul class="pagination justify-content-center">';
+    html += `<li class="page-item ${messagePage === 1 ? 'disabled' : ''}"><a class="page-link" href="#" data-page="${messagePage - 1}">«</a></li>`;
+    let start = Math.max(1, messagePage - 2);
+    let end = Math.min(messageTotalPages, messagePage + 2);
+    for (let i = start; i <= end; i++) {
+        html += `<li class="page-item ${i === messagePage ? 'active' : ''}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+    }
+    html += `<li class="page-item ${messagePage === messageTotalPages ? 'disabled' : ''}"><a class="page-link" href="#" data-page="${messagePage + 1}">»</a></li>`;
+    html += '</ul></nav>';
+    container.innerHTML = html;
+    container.querySelectorAll('.page-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const page = parseInt(link.dataset.page);
+            if (page && page >= 1 && page <= messageTotalPages) { messagePage = page; loadMessages(); }
+        });
+    });
+}
+
+// 搜索和排序事件绑定
+document.getElementById('messageSearchIcon')?.addEventListener('click', function() {
+    messageSearchTerm = document.getElementById('messageSearchInput').value.trim();
+    messagePage = 1;
+    loadMessages();
+});
+document.getElementById('messageSearchInput')?.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') { messageSearchTerm = this.value.trim(); messagePage = 1; loadMessages(); }
+});
+document.getElementById('sortOrderSelect')?.addEventListener('change', function() {
+    sortOrder = this.value;
+    messagePage = 1;
+    loadMessages();
+});
+window.refreshMessageBoard = function() {
+    messageSearchTerm = '';
+    const searchInput = document.getElementById('messageSearchInput');
+    if (searchInput) searchInput.value = '';
+    messagePage = 1;
+    loadMessages();
+};
+
+// 发布按钮事件
+document.getElementById('publishMessageBtn')?.addEventListener('click', publishMessage);
+
+// 留言板选项卡切换时加载数据
+document.getElementById('messageboard-tab')?.addEventListener('shown.bs.tab', function() {
+    loadUserLikes();
+    loadMessages();
+});
     })();
 </script>
 </body>
